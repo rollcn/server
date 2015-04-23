@@ -14,7 +14,7 @@ class CreatePublishTable extends Migration {
 	{
 		Schema::create('publish', function(Blueprint $table)
 		{
-			$table->increments('publish_id');
+			$table->increments('id');
 			$table->timestamps();
 		});
 	}

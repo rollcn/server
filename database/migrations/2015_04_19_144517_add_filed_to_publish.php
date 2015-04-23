@@ -14,7 +14,7 @@ class AddFiledToPublish extends Migration {
 	{
 		Schema::table('publish', function(Blueprint $table)
 		{
-			$table->integer('topic_id')->after('publish_id');
+			$table->integer('topic_id')->after('id');
 			$table->integer('user_id')->after('topic_id');
 			$table->integer('movie_id')->after('user_id');
 			$table->string('topic_content')->after('movie_id');

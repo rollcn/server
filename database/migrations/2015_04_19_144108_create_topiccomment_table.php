@@ -14,7 +14,7 @@ class CreateTopiccommentTable extends Migration {
 	{
 		Schema::create('t_comments', function(Blueprint $table)
 		{
-			$table->increments('tcomment_id');
+			$table->increments('id');
 			$table->timestamps();
 		});
 	}

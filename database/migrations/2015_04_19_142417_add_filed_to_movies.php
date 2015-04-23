@@ -14,7 +14,7 @@ class AddFiledToMovies extends Migration {
 	{
 		Schema::table('movies', function(Blueprint $table)
 		{
-			$table->string('name')->after('movie_id');
+			$table->string('name')->after('id');
 			$table->string('description')->after('name');
 			$table->string('director')->after('description');
 			$table->string('cast')->after('director');

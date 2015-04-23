@@ -14,7 +14,7 @@ class AddFiledToTopics extends Migration {
 	{
 		Schema::table('topics', function(Blueprint $table)
 		{
-			$table->string('content')->after('topic_id');
+			$table->string('content')->after('id');
 			$table->integer('like')->after('content');
 			$table->integer('movie1_id')->after('like');
 			$table->integer('movie2_id')->after('movie1_id');

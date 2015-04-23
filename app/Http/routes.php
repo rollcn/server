@@ -11,6 +11,14 @@
 |
 */
 
+Route::group(array('prefix' => 'api'),function(){
+	Route::controller('FindMovie','LittleMovie\MovieController');
+	Route::controller('CreateTopic','LittleMovie\TopicController');
+});
+Route::get('/home/id={id}/name={name}', function($id,$name){
+	return $id.$name;
+});
+/*
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
@@ -23,3 +31,4 @@ Route::controllers([
 Route::get('movie',function(){
 	return 'dianying';
 });
+*/

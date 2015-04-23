@@ -14,7 +14,7 @@ class AddFiledToTopicCollection extends Migration {
 	{
 		Schema::table('t_collection', function(Blueprint $table)
 		{
-			$table->integer('user_id')->after('tcollection_id');
+			$table->integer('user_id')->after('id');
 			$table->integer('topic_id')->after('user_id');
 		});
 	}

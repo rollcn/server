@@ -14,7 +14,7 @@ class CreateTopicCollectionTable extends Migration {
 	{
 		Schema::create('t_collection', function(Blueprint $table)
 		{
-			$table->increments('tcollection_id');
+			$table->increments('id');
 			$table->timestamps();
 		});
 	}

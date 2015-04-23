@@ -14,7 +14,7 @@ class AddFiledToTopiccomment extends Migration {
 	{
 		Schema::table('t_comments', function(Blueprint $table)
 		{
-			$table->integer('topic_id')->after('tcomment_id');
+			$table->integer('topic_id')->after('id');
 			$table->integer('user_id')->after('topic_id');
 			$table->string('content')->after('user_id');
 		});
