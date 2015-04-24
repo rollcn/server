@@ -18,6 +18,10 @@ Route::group(array('prefix' => 'api'),function(){
 Route::get('/home/id={id}/name={name}', function($id,$name){
 	return $id.$name;
 });
+
+Route::any('movie',function(){
+	return 'dianying';
+});
 /*
 Route::get('/', 'WelcomeController@index');
 

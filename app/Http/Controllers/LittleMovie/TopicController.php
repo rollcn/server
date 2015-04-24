@@ -3,14 +3,15 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\topic;
 
 class TopicController extends Controller {
 
-	public function getCreate()
+	public function postCreate()
 	{
-
-		return 'aaa';
+		$topic = new topic; 
+		$topic = topic::find(1);
+		var_dump($topic->toArray());
 	}
 
 }

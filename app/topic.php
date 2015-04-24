@@ -3,7 +3,6 @@
 use Illuminate\Database\Eloquent\Model;
 
 class topic extends Model {
-
 	protected $table = 'topics';
-	
+	protected $timestamp = true;
 }
