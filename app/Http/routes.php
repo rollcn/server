@@ -11,17 +11,24 @@
 |
 */
 
-Route::group(array('prefix' => 'api'),function(){
+Route::group(array('prefix' => 'api','before' => 'csrf'),function(){
 	Route::controller('FindMovie','LittleMovie\MovieController');
-	Route::controller('CreateTopic','LittleMovie\TopicController');
+	Route::controller('Topic','LittleMovie\TopicController');
+	Route::controller('Collect','LittleMovie\CollectController');
+	Route::controller('Comment','LittleMovie\CommentController');
+	Route::controller('User','LittleMovie\UserController');
 });
-Route::get('/home/id={id}/name={name}', function($id,$name){
+/*Route::get('/home/id={id}/name={name}', function($id,$name){
 	return $id.$name;
 });
 
 Route::any('movie',function(){
+	//abort(500,'error');
 	return 'dianying';
-});
+});*/
+
+//Route::resource('movie', 'LittleMovie\MovieController');
+
 /*
 Route::get('/', 'WelcomeController@index');
 
