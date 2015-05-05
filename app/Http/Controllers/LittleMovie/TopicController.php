@@ -29,7 +29,7 @@ class TopicController extends BaseFuncController {
 			$topic->create_user_id = $user_id;
 			$topic->content = $content;
 			$topic->movie1_id = $moive_id;
-			$topic->movie1_like = 1;  //投票数
+			//$topic->movie1_like = 1;  //投票数
 			$topic->movie1_user_id = $user_id;
 			$topic->location = 2;
 			$topic->save();		
@@ -74,21 +74,21 @@ class TopicController extends BaseFuncController {
 			if($topic->location == 2)
 			{
 				$topic->movie2_id = $movie_id;
-				$topic->movie2_like = 1;
+				//$topic->movie2_like = 1;
 				$topic->movie2_user_id = $user_id;
 				$location = 2;
 			}
 			if($topic->location == 3)
 			{
 				$topic->movie3_id = $movie_id;
-				$topic->movie3_like = 1;
+				//$topic->movie3_like = 1;
 				$topic->movie3_user_id = $user_id;
 				$location = 3;
 			}
 			if($topic->location == 4)
 			{
 				$topic->movie4_id = $movie_id;
-				$topic->movie4_like = 1;
+				//$topic->movie4_like = 1;
 				$topic->movie4_user_id = $user_id;
 				$location = 4;
 			}
