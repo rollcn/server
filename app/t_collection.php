@@ -2,7 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class movie extends Model {
-	protected $table = 'movies';
+class t_collection extends Model {
+
+	protected $table = 't_collection';
 	protected $timestamp = true;
+
 }
