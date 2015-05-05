@@ -41,6 +41,7 @@ class TopicController extends BaseFuncController {
 			/*新增投票信息*/	
 			$VoteController = new VoteController;
 			$VoteController->doVote($topic->id,$user_id,1);
+
 		}
 		return $this->toJson($msg_code);
 		//var_dump($res);	
