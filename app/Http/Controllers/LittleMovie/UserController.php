@@ -27,7 +27,13 @@ class UserController extends BaseFuncController {
 		$user->password = Hash::make($password);
 		$user->sign = $sign;
 		$user->save();
-		return $this->toJson(self::STATS_OK);
+		$data = array(
+			'id' => $user->id,
+			'name' => $user->name,
+			'password' => $user->password,
+			'sign' => $user->sign,
+		);
+		return $this->toJson(self::STATS_OK,$data);
 	}
 
 	/** 
@@ -40,7 +46,13 @@ class UserController extends BaseFuncController {
 		$users = user::where('name', '=' , $name)->get();
 		if(($users->count() == 1 && Hash::check($password,$users[0]->password)))
 		{
-			return $this->toJson(self::STATS_OK);
+			$data = array(
+			'id' => $users[0]->id,
+			'name' => $users[0]->name,
+			'password' => $users[0]->password,
+			'sign' => $users[0]->sign,
+			);
+			return $this->toJson(self::STATS_OK,$data);
 		}
 
 		return $this->toJson(self::STATS_LOGIN_ERROR);
