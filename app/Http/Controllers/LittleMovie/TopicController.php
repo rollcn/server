@@ -146,6 +146,7 @@ class TopicController extends BaseFuncController {
 		$topic = topic::find($topic_id);
 		$data = array(
 			'title' => $topic->content,
+			'topic_id' => $topic->id,
 			'movie1' => array(),
 			'movie2' => array(),
 			'movie3' => array(),
