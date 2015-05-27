@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\topic;
 use App\movie;
 use App\user;
+use DB;
+use Cache;
 
 class TopicController extends BaseFuncController {
 
@@ -42,11 +44,12 @@ class TopicController extends BaseFuncController {
 			$VoteController = new VoteController;
 			$VoteController->doVote($topic->id,$user_id,1);
 
+			$this->clearSesson();
 		}
+		
 		return $this->toJson($msg_code);
 		//var_dump($res);	
-		//return json_encode($res,true);
-		
+		//return json_encode($res,true);	
 	}
 
 	/** 
@@ -100,6 +103,8 @@ class TopicController extends BaseFuncController {
 			/*新增投票信息*/
 			$VoteController = new VoteController;
 			$VoteController->doVote($topic_id,$user_id,$location);
+
+			$this->clearSesson();
 		}
 		return $this->toJson(200);
 	}
@@ -115,6 +120,8 @@ class TopicController extends BaseFuncController {
 	{
 		$VoteController = new VoteController;
 		$msg_code = $VoteController->doVote($topic_id,$user_id,$location);
+
+		$this->clearSesson();
 		return $this->toJson($msg_code);
 	}
 
@@ -129,6 +136,11 @@ class TopicController extends BaseFuncController {
 		return $this->toJson(self::STATS_OK,$res);
 	}
 
+	/** 
+	 * 得到每一个话题详情
+	 * @param int $topic_id 话题id
+	 * @param int $user_id 用户id ，当前用户
+ 	*/
 	public function topicData($topic_id,$user_id)
 	{
 		$topic = topic::find($topic_id);
@@ -170,19 +182,41 @@ class TopicController extends BaseFuncController {
 	 * 得到全部话题
 	 * @param int $user_id 当前用户id
  	*/
-	public function getAllTopic($user_id = 0)
+	public function getAllTopic($user_id = 0,$currentId = 0,$pageSize = 8)
 	{
-		$topics = topic::all();
-		$res = array();
-		$index = 0;
-		foreach ($topics as $topic)
+		//进行缓存处理
+		if(!Cache::has('topic'.$currentId))
 		{
-			$res[$index++] = $this->topicData($topic->id,$user_id);
+			$topics = null;
+			$topics = DB::table('topics')->where('id','>',$currentId)->orderBy('created_at','DESC')->take($pageSize)->get();
+			$index = 0;
+			$res = array();
+			$index = 0;
+			foreach ($topics as $topic)
+			{
+				$res[$index++] = $this->topicData($topic->id,$user_id);
+			}
+			echo 'no cache';
+			Cache::put('topic'.$currentId, $res, 1);
+		}
+		
+		//直接从换从中拿数据
+		else
+		{
+			echo 'cached';
+			$res = Cache::get('topic'.$currentId);
 		}
 		return $this->toJson(self::STATS_OK,$res);
-
 	}
 
+	/** 
+	 * 清除缓存
+ 	*/
+	public function clearSesson()
+	{
+		Cache::flush();
+		return;
+	}
 
 	/** 
 	 * 得到话题中每个电影的详情及发布者信息
