@@ -183,13 +183,20 @@ class TopicController extends BaseFuncController {
 	 * 得到全部话题
 	 * @param int $user_id 当前用户id
  	*/
-	public function getAllTopic($user_id = 0,$currentId = 0,$pageSize = 8)
+	public function getAllTopic($user_id = 0,$currentId = 0,$pageSize = 10)
 	{
 		//进行缓存处理
 		if(!Cache::has('topic'.$currentId))
 		{
 			$topics = null;
-			$topics = DB::table('topics')->where('id','>',$currentId)->orderBy('created_at','DESC')->take($pageSize)->get();
+			if($currentId == 0)
+			{
+				$topics = DB::table('topics')->where('id','>',$currentId)->orderBy('created_at','DESC')->take($pageSize)->get();
+			}
+			else
+			{
+				$topics = DB::table('topics')->where('id','<',$currentId)->orderBy('created_at','DESC')->take($pageSize)->get();
+			}
 			$index = 0;
 			$res = array();
 			$index = 0;
