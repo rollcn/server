@@ -204,14 +204,14 @@ class TopicController extends BaseFuncController {
 			{
 				$res[$index++] = $this->topicData($topic->id,$user_id);
 			}
-			echo 'no cache';
+			//echo 'no cache';
 			Cache::put('topic'.$currentId, $res, 1);
 		}
 		
 		//直接从换从中拿数据
 		else
 		{
-			echo 'cached';
+			//echo 'cached';
 			$res = Cache::get('topic'.$currentId);
 		}
 		return $this->toJson(self::STATS_OK,$res);
