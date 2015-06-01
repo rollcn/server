@@ -170,6 +170,7 @@ class UserController extends BaseFuncController {
 		$topic = topic::find($topic_id);
 		$res = array(
 			'topic_id'      => $topic_id,
+			'topic_content' => $topic->content,
 			'movie1_poster' => $this->getMovieUrl($topic->movie1_id),
 			'movie2_poster' => $this->getMovieUrl($topic->movie2_id),
 			'movie3_poster' => $this->getMovieUrl($topic->movie3_id),
