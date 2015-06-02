@@ -186,8 +186,8 @@ class TopicController extends BaseFuncController {
 	public function getAllTopic($user_id = 0,$currentId = 0,$pageSize = 10)
 	{
 		//进行缓存处理
-		if(!Cache::has('topic'.$currentId))
-		{
+		/*if(!Cache::has('topic'.$currentId))
+		{*/
 			$topics = null;
 			if($currentId == 0)
 			{
@@ -204,8 +204,8 @@ class TopicController extends BaseFuncController {
 			{
 				$res[$index++] = $this->topicData($topic->id,$user_id);
 			}
-			//echo 'no cache';
-			Cache::put('topic'.$currentId, $res, 1);
+			/*echo 'no cache';
+			//Cache::put('topic'.$currentId, $res, 1);
 		}
 		
 		//直接从换从中拿数据
@@ -213,7 +213,7 @@ class TopicController extends BaseFuncController {
 		{
 			//echo 'cached';
 			$res = Cache::get('topic'.$currentId);
-		}
+		}*/
 		return $this->toJson(self::STATS_OK,$res);
 	}
 
